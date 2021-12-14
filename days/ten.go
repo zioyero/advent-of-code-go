@@ -12,7 +12,6 @@ type Day interface {
 }
 
 type Ten struct {
-	open []rune
 }
 
 func (t Ten) PartOne(lines []string) int {
@@ -130,8 +129,4 @@ func autocompleteCharacterScore(operand string) int {
 	default:
 		return 0
 	}
-}
-
-func isCloseOperand(operand string) bool {
-	return !isOpenOperand(operand)
 }

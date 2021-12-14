@@ -9,7 +9,7 @@ import (
 
 func main() {
 	fmt.Println("Happy Advent of Code!")
-	run(days.Eleven{}, input.Parse("data/sample/eleven.txt"))
+	// run(days.Eleven{}, input.Parse("data/sample/eleven.txt"))
 	run(days.Eleven{}, input.Parse("data/eleven.txt"))
 }
 
