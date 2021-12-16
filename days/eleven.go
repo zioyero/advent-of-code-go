@@ -7,9 +7,11 @@ import (
 	"github.com/fatih/color"
 )
 
+// Eleven is Day 11 of Advent of Code!
 type Eleven struct {
 }
 
+// PartOne counts the flashes that happen over 100 steps
 func (e Eleven) PartOne(lines []string) int {
 	input := parseInput(lines)
 	garden := octopusGarden{
@@ -39,6 +41,7 @@ func parseInput(lines []string) [][]int {
 	return input
 }
 
+// PartTwo calculates the first step where the octopedes are synchronized
 func (e Eleven) PartTwo(lines []string) int {
 	input := parseInput(lines)
 	garden := octopusGarden{

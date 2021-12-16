@@ -6,6 +6,7 @@ fmt:
 
 lint: fmt
 	golint ./...
+	golangci-lint run
 .PHONY:lint
 
 vet: fmt
