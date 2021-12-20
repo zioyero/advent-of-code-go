@@ -7,6 +7,15 @@ import (
 	"adventOfCode.com/m/v2/structures"
 )
 
+func noBacktrack(p algo.Path, n structures.Node) bool {
+	for _, pn := range p.Nodes() {
+		if n == pn {
+			return false
+		}
+	}
+	return true
+}
+
 func Test_PathsBetween(t *testing.T) {
 	g := structures.Graph{}
 	a := structures.Node{Value: "a"}
@@ -16,7 +25,7 @@ func Test_PathsBetween(t *testing.T) {
 	e := structures.Node{Value: "e"}
 	g.AddEdge(a, b)
 
-	dfs := algo.DFS{Graph: &g}
+	dfs := algo.DFS{Graph: &g, CanAdd: noBacktrack}
 	/*
 	 * a--b
 	 */
@@ -34,7 +43,7 @@ func Test_PathsBetween(t *testing.T) {
 	paths = dfs.PathsBetween(a, c)
 
 	if len(paths) != 1 {
-		t.Fatal("there should be a singe path between a -- c, actual path count: ", len(paths))
+		t.Fatal("there should be a single path between a -- c, actual path count: ", len(paths))
 	}
 	path := paths[0]
 	if path.Length() != 3 {
