@@ -16,9 +16,15 @@ func (t Twelve) PartOne(lines []string) int {
 	fmt.Printf("Nodes: %v\n", graph.Nodes)
 
 	search := algo.DFS{Graph: graph}
+	fmt.Println("Finding efficient routes...")
 	paths := search.PathsBetween(Node{Value: "start"}, Node{Value: "end"})
-	fmt.Printf("Paths: %v\n", paths)
-	return 0
+	fmt.Printf("Paths: %v\n", len(paths))
+	for _, path := range paths {
+		fmt.Printf("Nodes: %v\n", path.Nodes())
+	}
+	fmt.Println("Routes Calculated!")
+
+	return len(paths)
 }
 
 func (t Twelve) PartTwo(lines []string) int {

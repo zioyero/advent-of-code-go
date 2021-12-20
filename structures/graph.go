@@ -7,7 +7,7 @@ import (
 
 type Graph struct {
 	Nodes []Node
-	Edges map[Node][]*Node
+	Edges map[Node][]Node
 	lock  sync.Mutex
 }
 
@@ -16,8 +16,8 @@ type Node struct {
 }
 
 type Edge struct {
-	A *Node
-	B *Node
+	A Node
+	B Node
 }
 
 func (n *Node) String() string {
@@ -33,16 +33,16 @@ func (g *Graph) addNode(n Node) {
 	}
 }
 
-func (g *Graph) GetNode(v string) (*Node, bool) {
+func (g *Graph) GetNode(v string) (Node, bool) {
 	for _, node := range g.Nodes {
 		if node.Value == v {
-			return &node, true
+			return node, true
 		}
 	}
-	return &Node{}, false
+	return Node{}, false
 }
 
-func (g *Graph) GetAdjacentNodes(n Node) []*Node {
+func (g *Graph) GetAdjacentNodes(n Node) []Node {
 	return g.Edges[n]
 }
 
@@ -59,20 +59,18 @@ func (g *Graph) Contains(n Node) bool {
 func (g *Graph) AddEdge(n1, n2 Node) {
 	g.lock.Lock()
 	if g.Edges == nil {
-		g.Edges = make(map[Node][]*Node)
+		g.Edges = make(map[Node][]Node)
 	}
-	n1p, ok := g.GetNode(n1.Value)
+	_, ok := g.GetNode(n1.Value)
 	if !ok {
 		g.addNode(n1)
-		n1p = &n1
 	}
-	n2p, ok := g.GetNode(n2.Value)
+	_, ok = g.GetNode(n2.Value)
 	if !ok {
 		g.addNode(n2)
-		n2p = &n2
 	}
-	g.Edges[n1] = append(g.Edges[n1], n2p)
-	g.Edges[n2] = append(g.Edges[n2], n1p)
+	g.Edges[n1] = append(g.Edges[n1], n2)
+	g.Edges[n2] = append(g.Edges[n2], n1)
 	g.lock.Unlock()
 }
 

@@ -20,3 +20,7 @@ build: vet
 run: build
 	go run main.go
 .PHONY:run
+
+test: build
+	go test ./...
+.PHONY:test
