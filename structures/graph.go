@@ -61,9 +61,10 @@ func (g *Graph) AddEdge(n1, n2 Node) {
 	if g.Edges == nil {
 		g.Edges = make(map[Node][]*Node)
 	}
-	_, ok := g.GetNode(n1.Value)
+	n1p, ok := g.GetNode(n1.Value)
 	if !ok {
 		g.addNode(n1)
+		n1p = &n1
 	}
 	n2p, ok := g.GetNode(n2.Value)
 	if !ok {
@@ -71,6 +72,7 @@ func (g *Graph) AddEdge(n1, n2 Node) {
 		n2p = &n2
 	}
 	g.Edges[n1] = append(g.Edges[n1], n2p)
+	g.Edges[n2] = append(g.Edges[n2], n1p)
 	g.lock.Unlock()
 }
 

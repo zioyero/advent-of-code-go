@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"adventOfCode.com/m/v2/algo"
 	. "adventOfCode.com/m/v2/structures"
 )
 
@@ -13,6 +14,10 @@ func (t Twelve) PartOne(lines []string) int {
 	graph := makeGraph(lines)
 	fmt.Printf("Graph:\n%s\n", graph.String())
 	fmt.Printf("Nodes: %v\n", graph.Nodes)
+
+	search := algo.DFS{Graph: graph}
+	paths := search.PathsBetween(Node{Value: "start"}, Node{Value: "end"})
+	fmt.Printf("Paths: %v\n", paths)
 	return 0
 }
 
