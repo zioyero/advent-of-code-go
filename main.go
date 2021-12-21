@@ -10,7 +10,7 @@ import (
 func main() {
 	fmt.Println("Happy Advent of Code!")
 	// run(days.Eleven{}, input.Parse("data/sample/eleven.txt"))
-	run(days.Twelve{}, input.Parse("data/day12.txt"))
+	run(&days.Thirteen{}, input.Parse("data/day13.txt"))
 }
 
 func run(d days.Day, lines []string) {
