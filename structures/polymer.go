@@ -1,7 +1,6 @@
 package structures
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -9,17 +8,16 @@ type Polymer interface {
 	Value() string
 	Rules() []Rule
 	Process()
-	MostCommonElement()
-	LeastCommonElement()
-	ElementCount(el string) int
+	MostCommonElement() string
+	LeastCommonElement() string
+	ElementCount(element string) int
+	Stats() Stats
 }
 
 type SimplePolymer struct {
-	value                string
-	rules                map[string]string
-	ruleList             []Rule
-	precalculated        map[string]string
-	longestPrecalculated []string
+	value    string
+	rules    map[string]string
+	ruleList []Rule
 }
 
 type Rule struct {
@@ -27,7 +25,7 @@ type Rule struct {
 	Insertion string
 }
 
-func NewPolymer(template string, rules []Rule) SimplePolymer {
+func NewSimplePolymer(template string, rules []Rule) SimplePolymer {
 	r := make(map[string]string, len(rules))
 	for _, rule := range rules {
 		r[rule.Pair] = rule.Insertion
@@ -37,6 +35,10 @@ func NewPolymer(template string, rules []Rule) SimplePolymer {
 
 func NewRule(pair string, insertion string) Rule {
 	return Rule{Pair: pair, Insertion: insertion}
+}
+
+func (p *SimplePolymer) Stats() Stats {
+	return Stats{}
 }
 
 func (p *SimplePolymer) Process() {
