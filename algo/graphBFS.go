@@ -9,7 +9,7 @@ type IDepthFirstSearch interface {
 	PathsBetween(n1 Node, n2 Node) [][]Node
 }
 
-type DFS struct {
+type BFS struct {
 	Graph    *Graph
 	explored []Edge
 	CanAdd   CanAddNodeToPath
@@ -20,17 +20,17 @@ type Path struct {
 	edges []Edge
 }
 
-func (dfs *DFS) Clear() {
+func (dfs *BFS) Clear() {
 	dfs.explored = []Edge{}
 }
 
 // DFS
 
-func (dfs *DFS) PathsBetween(n1 Node, n2 Node) []Path {
+func (dfs *BFS) PathsBetween(n1 Node, n2 Node) []Path {
 	return dfs.pathsBetween(n1, n2, Path{nodes: make([]Node, 0)})
 }
 
-func (dfs *DFS) pathsBetween(n1 Node, n2 Node, p Path) []Path {
+func (dfs *BFS) pathsBetween(n1 Node, n2 Node, p Path) []Path {
 	// base case
 	if len(p.nodes) == 0 {
 		p.nodes = append(p.nodes, n1)
