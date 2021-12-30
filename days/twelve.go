@@ -15,7 +15,7 @@ func (t Twelve) PartOne(lines []string) int {
 	fmt.Printf("Graph:\n%s\n", graph.String())
 	fmt.Printf("Nodes: %v\n", graph.Nodes)
 
-	search := algo.DFS{Graph: graph, CanAdd: CanAddNodeP1}
+	search := algo.BFS{Graph: graph, CanAdd: CanAddNodeP1}
 	fmt.Println("Finding efficient routes...")
 	start := Node{Value: "start"}
 	end := Node{Value: "end"}
@@ -45,7 +45,7 @@ func (t Twelve) PartTwo(lines []string) int {
 	fmt.Printf("Graph:\n%s\n", graph.String())
 	fmt.Printf("Nodes: %v\n", graph.Nodes)
 
-	search := algo.DFS{Graph: graph, CanAdd: CanAddNodeP2}
+	search := algo.BFS{Graph: graph, CanAdd: CanAddNodeP2}
 	fmt.Println("Finding efficient routes...")
 	start := Node{Value: "start"}
 	end := Node{Value: "end"}

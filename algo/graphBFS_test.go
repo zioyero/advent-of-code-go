@@ -25,7 +25,7 @@ func Test_PathsBetween(t *testing.T) {
 	e := structures.Node{Value: "e"}
 	g.AddEdge(a, b)
 
-	dfs := algo.DFS{Graph: &g, CanAdd: noBacktrack}
+	dfs := algo.BFS{Graph: &g, CanAdd: noBacktrack}
 	/*
 	 * a--b
 	 */
